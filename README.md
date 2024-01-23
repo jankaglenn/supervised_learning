@@ -1,51 +1,40 @@
 # supervised_learning
 
 Background
-In this Challenge, you’ll use various techniques to train and evaluate a model based on loan risk. You’ll use a dataset of historical lending activity from a peer-to-peer lending services company to build a model that can identify the creditworthiness of borrowers.
+In this Challenge, I used various techniques to train and evaluate a model based on loan risk. I used a dataset of historical lending activity from a peer-to-peer lending services company to build a model that can identify the creditworthiness of borrowers.
 
-Instructions
-The instructions for this Challenge are divided into the following subsections:
+This project involves constructing two logistic regression models for supervised machine learning, utilizing data from a hypothetical peer-to-peer lending services company ("crowdlending"). The comparison of both models reveals a recommendation in favor of the latter model, designed to address sample size data skewing. The primary goal is to minimize the risk associated with loans to both lenders and borrowers.
 
-Split the Data into Training and Testing Sets
+The training and testing datasets encompass various standard financial loan attributes (loan size, debt-to-income ratio, interest rate, etc.), with labels indicating whether the loans were repaid. The models are evaluated based on their ability to predict creditworthiness versus default.
 
-Create a Logistic Regression Model with the Original Data
+Notably, the majority of data points (approximately 97%) are classified as creditworthy (75,036) compared to defaulters (2,500). To mitigate the impact of this disproportionate sample, the second model employs the RandomOverSampler module from the imbalanced-learn library. This ensures equal representation of creditworthy and default-prone cases in the training data, leading to statistically superior results.
 
-Write a Credit Risk Analysis Report
+Results:
+Machine Learning Model 1 (Logistic Regression predictions):
 
-Split the Data into Training and Testing Sets
-Open the starter code notebook and use it to complete the following steps:
+Accuracy: 99.2%
+Balanced Accuracy: 94.4%
+Precision and Recall (Creditworthy): 100%, 100%
+Precision and Recall (Defaulters): 87%, 89%
+Machine Learning Model 2 (Resampled Logistic Regression):
 
-Read the lending_data.csv data from the Resources folder into a Pandas DataFrame.
+Accuracy: 99.5%
+Balanced Accuracy: 99.6%
+Precision and Recall (Creditworthy): 100%, 100%
+Precision and Recall (Defaulters): 87%, 100%
+Comparative Stats (Resampled Model's Numbers Listed First):
 
-Create the labels set (y) from the “loan_status” column, and then create the features (X) DataFrame from the remaining columns.
+Lower False Negatives (2 vs. 67)
+Slightly Higher Rate of False Positives (91 vs. 80)
+Higher True Negatives (623 vs. 558)
+Lower True Positives (18679 vs. 18668)
+Summary:
+The second model may approve a few more loans for the default-prone, but this is offset by a significantly higher identification of true defaulters. Although there are 11 more approved loans for defaulters, 65 more defaulters are accurately identified. In general, the second model is expected to result in numerically more loan repayments. Assuming proportional loan values, this model offers lenders a greater return on investment, with a marginal increase in losses but substantial income gains.
 
-NOTE
-A value of 0 in the “loan_status” column means that the loan is healthy. A value of 1 means that the loan has a high risk of defaulting.
+While the second model may approve loans for a few individuals who should be denied (false positives), it excels in identifying many more individuals who should be denied loans (true negatives). This approach reduces risk for lenders and is likely to enhance overall profitability.
 
-Split the data into training and testing datasets by using train_test_split.
 
-Create a Logistic Regression Model with the Original Data
-Use your knowledge of logistic regression to complete the following steps:
 
-Fit a logistic regression model by using the training data (X_train and y_train).
 
-Save the predictions for the testing data labels by using the testing feature data (X_test) and the fitted model.
 
-Evaluate the model’s performance by doing the following:
 
-Generate a confusion matrix.
-
-Print the classification report.
-
-Answer the following question: How well does the logistic regression model predict both the 0 (healthy loan) and 1 (high-risk loan) labels?
-
-Write a Credit Risk Analysis Report
-Write a brief report that includes a summary and analysis of the performance of the machine learning models that you used in this homework. You should write this report as the README.md file included in your GitHub repository.
-
-Structure your report by using the report template that Starter_Code.zip includes, ensuring that it contains the following:
-
-An overview of the analysis: Explain the purpose of this analysis.
-
-The results: Using a bulleted list, describe the accuracy score, the precision score, and recall score of the machine learning model.
-
-A summary: Summarize the results from the machine learning model. Include your justification for recommending the model for use by the company. If you don’t recommend the model, justify your reasoning.
